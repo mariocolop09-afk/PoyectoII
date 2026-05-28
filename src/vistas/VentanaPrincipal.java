@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vistas;
+import javax.swing.JOptionPane;
 
+import modelos.Aeropuerto;
+import grafo.GrafoVuelos;
 /**
  *
  * @author Eduardo
@@ -39,8 +42,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA DE NAVEGACION DE VUELOS");
-        setPreferredSize(new java.awt.Dimension(600, 400));
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
@@ -50,10 +52,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Registrar Vuelo");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jButton3.setText("Mostrar Conexiones");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
 
         jButton4.setText("Buscar Ruta");
+        jButton4.addActionListener(this::jButton4ActionPerformed);
 
         jButton5.setText("Salir");
 
@@ -111,8 +116,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // REGISTRAR AEREOPUERTO
+        
+        RegistroAeropuerto ventana = new RegistroAeropuerto();
+    ventana.setVisible(true);
+    
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // REGISTRAR VUELO
+        RegistroVuelo ventana = new RegistroVuelo();
+    ventana.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // MOSTRAR CONEXIONES
+        MostrarConexiones ventana = new MostrarConexiones();
+    ventana.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //RUTA 
+        BuscarRuta ventana = new BuscarRuta();
+    ventana.setVisible(true);
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

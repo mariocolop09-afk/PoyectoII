@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package vistas;
+import javax.swing.JOptionPane;
 
+import modelos.Aeropuerto;
+import grafo.GrafoVuelos;
 /**
  *
  * @author Eduardo
@@ -28,14 +31,14 @@ public class MostrarConexiones extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        areaConexiones = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("CONEXIONES DE VUELOS");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        areaConexiones.setColumns(20);
+        areaConexiones.setRows(5);
+        jScrollPane1.setViewportView(areaConexiones);
 
         jButton1.setText("Volver");
 
@@ -72,11 +75,16 @@ public class MostrarConexiones extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+private void formWindowOpened(java.awt.event.WindowEvent evt) {
 
+    areaConexiones.setText(
+            grafo.mostrarConexiones()
+    );
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaConexiones;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
