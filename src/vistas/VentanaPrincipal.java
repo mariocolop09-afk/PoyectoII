@@ -15,11 +15,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
 
+    private GrafoVuelos grafo;
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+        grafo = new GrafoVuelos();
     }
 
     /**
@@ -117,22 +119,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // REGISTRAR AEREOPUERTO
-        
-        RegistroAeropuerto ventana = new RegistroAeropuerto();
-    ventana.setVisible(true);
+        RegistroAeropuerto ventana =
+        new RegistroAeropuerto(grafo);
+
+ventana.setVisible(true);
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // REGISTRAR VUELO
-        RegistroVuelo ventana = new RegistroVuelo();
-    ventana.setVisible(true);
+RegistroVuelo ventana =
+        new RegistroVuelo(grafo);
+
+ventana.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // MOSTRAR CONEXIONES
-        MostrarConexiones ventana = new MostrarConexiones();
-    ventana.setVisible(true);
+MostrarConexiones ventana =
+        new MostrarConexiones(grafo);
+
+ventana.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
