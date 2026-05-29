@@ -22,7 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         grafo = new GrafoVuelos();
-                setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -66,6 +66,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton4.addActionListener(this::jButton4ActionPerformed);
 
         jButton5.setText("Salir");
+        jButton5.addActionListener(this::jButton5ActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -153,9 +154,14 @@ ventana.setVisible(true);
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //RUTA 
         BuscarRuta ventana = new BuscarRuta();
+        ventana.setGrafo(grafo);
     ventana.setVisible(true);
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -55,6 +55,7 @@ public class MostrarConexiones extends javax.swing.JFrame {
         jScrollPane1.setViewportView(areaConexiones);
 
         jButton1.setText("Volver");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,6 +97,10 @@ public class MostrarConexiones extends javax.swing.JFrame {
             grafo.mostrarConexiones()
     );
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

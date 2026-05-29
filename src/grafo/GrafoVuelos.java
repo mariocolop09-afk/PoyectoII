@@ -10,6 +10,10 @@ import modelos.Ruta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class GrafoVuelos {
 
@@ -89,4 +93,129 @@ public class GrafoVuelos {
 
         return aeropuertos;
     }
+    
+    public Ruta calcularRuta(String origenCodigo,
+                         String destinoCodigo,
+                         String criterio) {
+
+    Aeropuerto origen = buscarAeropuerto(origenCodigo);
+
+    Aeropuerto destino = buscarAeropuerto(destinoCodigo);
+
+    Map<Aeropuerto, Double> distancias = new HashMap<>();
+
+    Map<Aeropuerto, Aeropuerto> anteriores = new HashMap<>();
+
+    Set<Aeropuerto> visitados = new HashSet<>();
+
+    for (Aeropuerto aeropuerto : aeropuertos) {
+
+        distancias.put(aeropuerto, Double.MAX_VALUE);
+    }
+
+    distancias.put(origen, 0.0);
+
+    while (visitados.size() < aeropuertos.size()) {
+
+        Aeropuerto actual = null;
+
+        double menor = Double.MAX_VALUE;
+
+        for (Aeropuerto aeropuerto : aeropuertos) {
+
+            if (!visitados.contains(aeropuerto)
+                    && distancias.get(aeropuerto) < menor) {
+
+                menor = distancias.get(aeropuerto);
+
+                actual = aeropuerto;
+            }
+        }
+
+        if (actual == null) {
+            break;
+        }
+
+        visitados.add(actual);
+
+        for (Vuelo vuelo : actual.getVuelos()) {
+
+            Aeropuerto vecino = vuelo.getDestino();
+
+            double peso = obtenerPeso(vuelo, criterio);
+
+            double nuevaDistancia =
+                    distancias.get(actual) + peso;
+
+            if (nuevaDistancia < distancias.get(vecino)) {
+
+                distancias.put(vecino, nuevaDistancia);
+
+                anteriores.put(vecino, actual);
+            }
+        }
+    }
+
+    List<Aeropuerto> ruta = new ArrayList<>();
+
+    Aeropuerto actual = destino;
+
+    while (actual != null) {
+
+        ruta.add(0, actual);
+
+        actual = anteriores.get(actual);
+    }
+
+    double distanciaTotal = 0;
+
+    double costoTotal = 0;
+
+    double tiempoTotal = 0;
+
+    for (int i = 0; i < ruta.size() - 1; i++) {
+
+        Aeropuerto a = ruta.get(i);
+
+        Aeropuerto b = ruta.get(i + 1);
+
+        for (Vuelo vuelo : a.getVuelos()) {
+
+            if (vuelo.getDestino().equals(b)) {
+
+                distanciaTotal += vuelo.getDistancia();
+
+                costoTotal += vuelo.getPrecio();
+
+                tiempoTotal += vuelo.getTiempoTotal();
+            }
+        }
+    }
+
+    return new Ruta(
+            ruta,
+            distanciaTotal,
+            costoTotal,
+            tiempoTotal
+    );
+}
+    
+    private double obtenerPeso(Vuelo vuelo,
+                           String criterio) {
+
+    switch (criterio) {
+
+        case "Menor Precio":
+
+            return vuelo.getPrecio();
+
+        case "Menor Tiempo":
+
+            return vuelo.getTiempoTotal();
+
+        default:
+
+            return vuelo.getDistancia();
+    }
+}
 }

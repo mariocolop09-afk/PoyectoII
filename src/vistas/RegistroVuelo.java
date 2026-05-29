@@ -26,6 +26,20 @@ public class RegistroVuelo extends javax.swing.JFrame {
     private GrafoVuelos grafo;
     public void setGrafo(GrafoVuelos grafo) {
     this.grafo = grafo;
+     cargarAeropuertos();
+}
+    
+        private void cargarAeropuertos() {
+
+    cbOrigen.removeAllItems();
+    cbDestino.removeAllItems();
+
+    for (Aeropuerto aeropuerto : grafo.getAeropuertos()) {
+
+        cbOrigen.addItem(aeropuerto.getCodigo());
+
+        cbDestino.addItem(aeropuerto.getCodigo());
+    }
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,8 +87,10 @@ public class RegistroVuelo extends javax.swing.JFrame {
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Limpiar");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jButton3.setText("Volver");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,6 +197,20 @@ public class RegistroVuelo extends javax.swing.JFrame {
     JOptionPane.showMessageDialog(this,
             "Vuelo registrado correctamente");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    txtDistancia.setText("");
+    txtPrecio.setText("");
+    txtTiempoVuelo.setText("");
+    txtTiempoEspera.setText("");
+
+    cbOrigen.setSelectedIndex(0);
+    cbDestino.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import modelos.Aeropuerto;
 import grafo.GrafoVuelos;
+import modelos.Ruta;
 /**
  *
  * @author Eduardo
@@ -23,6 +24,24 @@ public class BuscarRuta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    private GrafoVuelos grafo;
+    public void setGrafo(GrafoVuelos grafo) {
+    this.grafo = grafo;
+     cargarAeropuertos();
+}
+    
+    private void cargarAeropuertos() {
+
+    cbOrigen.removeAllItems();
+    cbDestino.removeAllItems();
+
+    for (Aeropuerto aeropuerto : grafo.getAeropuertos()) {
+
+        cbOrigen.addItem(aeropuerto.getCodigo());
+
+        cbDestino.addItem(aeropuerto.getCodigo());
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +73,7 @@ public class BuscarRuta extends javax.swing.JFrame {
 
         jLabel4.setText("Buscar por:");
 
-        cbCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Menor distancia", "Menor precio", "Menor tiempo" }));
+        cbCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Menor Distancia", "Menor Precio", "Menor Tiempo" }));
 
         jButton1.setText("Buscar Ruta");
         jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -64,6 +83,7 @@ public class BuscarRuta extends javax.swing.JFrame {
         jScrollPane1.setViewportView(areaResultado);
 
         jButton2.setText("Volver");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,15 +151,49 @@ public class BuscarRuta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          // buscar ruta
-        String origen = cbOrigen.getSelectedItem().toString();
+
+    String origen = cbOrigen.getSelectedItem().toString();
+
     String destino = cbDestino.getSelectedItem().toString();
 
     String criterio = cbCriterio.getSelectedItem().toString();
 
-    areaResultado.setText(
-            "Buscando ruta..."
+    Ruta ruta = grafo.calcularRuta(
+            origen,
+            destino,
+            criterio
     );
+
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("RUTA ENCONTRADA\n\n");
+
+    for (Aeropuerto aeropuerto : ruta.getAeropuertos()) {
+
+        sb.append(aeropuerto.getCodigo())
+          .append(" -> ");
+    }
+
+    sb.append("\n\n");
+
+    sb.append("Distancia Total: ")
+      .append(ruta.getDistanciaTotal())
+      .append(" km\n");
+
+    sb.append("Costo Total: Q")
+      .append(ruta.getCostoTotal())
+      .append("\n");
+
+    sb.append("Tiempo Total: ")
+      .append(ruta.getTiempoTotal())
+      .append(" horas\n");
+
+    areaResultado.setText(sb.toString());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
