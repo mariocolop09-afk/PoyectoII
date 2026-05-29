@@ -3,17 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package grafo;
+
 import modelos.Aeropuerto;
 import modelos.Vuelo;
 
 import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author Eduardo
- */
+
 public class GrafoVuelos {
+
     private List<Aeropuerto> aeropuertos;
+
+    public GrafoVuelos() {
+
+        aeropuertos = new ArrayList<>();
+    }
+
+    public void agregarAeropuerto(Aeropuerto aeropuerto) {
+
+        aeropuertos.add(aeropuerto);
+    }
+
     public Aeropuerto buscarAeropuerto(String codigo) {
 
         for (Aeropuerto aeropuerto : aeropuertos) {
@@ -75,6 +85,7 @@ public class GrafoVuelos {
     }
 
     public List<Aeropuerto> getAeropuertos() {
+
         return aeropuertos;
     }
 }

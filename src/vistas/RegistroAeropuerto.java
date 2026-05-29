@@ -5,7 +5,6 @@
 package vistas;
 
 import javax.swing.JOptionPane;
-import javax.swing.JOptionPane;
 
 import modelos.Aeropuerto;
 import grafo.GrafoVuelos;
@@ -19,9 +18,9 @@ private GrafoVuelos grafo;
 /**
      * Creates new form RegistroAeropuerto
      */
-    public RegistroAeropuerto() {
+    public RegistroAeropuerto(GrafoVuelos grafo) {
         initComponents();
-        
+        this.grafo = grafo;
     }
 
     /**
@@ -122,7 +121,7 @@ private GrafoVuelos grafo;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // GUARDAR
-        String codigo = txtCodigo.getText();
+    String codigo = txtCodigo.getText();
     String nombre = txtNombre.getText();
     String pais = txtPais.getText();
 

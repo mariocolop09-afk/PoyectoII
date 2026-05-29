@@ -5,7 +5,6 @@
 package vistas;
 
 import javax.swing.JOptionPane;
-import javax.swing.JOptionPane;
 
 import modelos.Aeropuerto;
 import grafo.GrafoVuelos;
@@ -14,12 +13,13 @@ import grafo.GrafoVuelos;
  * @author Eduardo
  */
 public class RegistroVuelo extends javax.swing.JPanel {
-
+private GrafoVuelos grafo;
     /**
      * Creates new form RegistroVuelo
      */
-    public RegistroVuelo() {
+    public RegistroVuelo(GrafoVuelos grafo) {
         initComponents();
+        this.grafo = grafo;
     }
 
     /**

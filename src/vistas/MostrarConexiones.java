@@ -11,13 +11,15 @@ import grafo.GrafoVuelos;
  *
  * @author Eduardo
  */
-public class MostrarConexiones extends javax.swing.JPanel {
 
+public class MostrarConexiones extends javax.swing.JPanel {
+private GrafoVuelos grafo;
     /**
      * Creates new form MostrarConexiones
      */
-    public MostrarConexiones() {
+    public MostrarConexiones(GrafoVuelos grafo) {
         initComponents();
+         this.grafo = grafo;
     }
 
     /**
