@@ -6,22 +6,23 @@ package grafo;
 
 import modelos.Aeropuerto;
 import modelos.Vuelo;
-
+import modelos.Ruta;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 public class GrafoVuelos {
 
     private List<Aeropuerto> aeropuertos;
 
     public GrafoVuelos() {
-
         aeropuertos = new ArrayList<>();
     }
 
     public void agregarAeropuerto(Aeropuerto aeropuerto) {
-
+        if (buscarAeropuerto(aeropuerto.getCodigo()) == null) {
         aeropuertos.add(aeropuerto);
+    }
     }
 
     public Aeropuerto buscarAeropuerto(String codigo) {
