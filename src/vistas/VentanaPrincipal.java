@@ -22,6 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         grafo = new GrafoVuelos();
+                setLocationRelativeTo(null);
     }
 
     /**
@@ -47,6 +48,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(550, 400));
 
         jLabel1.setText("SISTEMA DE NAVEGACIÓN DE VUELOS");
 
@@ -105,11 +108,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
@@ -119,17 +122,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // REGISTRAR AEREOPUERTO
-        RegistroAeropuerto ventana =
-        new RegistroAeropuerto(grafo);
+RegistroAeropuerto ventana =
+        new RegistroAeropuerto();
 
-ventana.setVisible(true);
-    
+ventana.setGrafo(grafo);
+
+ventana.setVisible(true);   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // REGISTRAR VUELO
 RegistroVuelo ventana =
-        new RegistroVuelo(grafo);
+        new RegistroVuelo();
+
+ventana.setGrafo(grafo);
 
 ventana.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -137,7 +143,9 @@ ventana.setVisible(true);
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // MOSTRAR CONEXIONES
 MostrarConexiones ventana =
-        new MostrarConexiones(grafo);
+        new MostrarConexiones();
+
+ventana.setGrafo(grafo);
 
 ventana.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
